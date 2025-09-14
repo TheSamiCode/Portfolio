@@ -6,259 +6,80 @@
     <title>Samiksha Sakarkar - Java Developer Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#7c3aed'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #7c3aed;
-            --accent: #06b6d4;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --error: #ef4444;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --gray-50: #f8fafc;
-            --gray-100: #f1f5f9;
-            --gray-900: #0f172a;
-        }
-        
-        * {
-            box-sizing: border-box;
-        }
-        
-        body { 
-            font-family: 'Inter', sans-serif; 
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        .gradient-bg { 
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
-            position: relative;
-        }
-        
-        .gradient-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="0.5" fill="white" opacity="0.1"/><circle cx="75" cy="25" r="0.3" fill="white" opacity="0.1"/><circle cx="25" cy="75" r="0.4" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="0.2" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.6;
-        }
-        
-        .glass-effect { 
-            backdrop-filter: blur(16px); 
-            background: rgba(255, 255, 255, 0.1); 
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .fade-in { 
-            opacity: 0; 
-            transform: translateY(40px); 
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
-        }
-        
-        .fade-in.visible { 
-            opacity: 1; 
-            transform: translateY(0); 
-        }
-        
-        .hover-scale { 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-        }
-        
-        .hover-scale:hover { 
-            transform: scale(1.03) translateY(-4px); 
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .card {
-            background: white;
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .card:hover {
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
-            border-color: rgba(37, 99, 235, 0.2);
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 12px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
-        }
-        
-        .btn-secondary {
-            border: 2px solid white;
-            color: white;
-            padding: 10px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            background: transparent;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-secondary:hover {
-            background: white;
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-        
-        .skill-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 1.75rem;
-            transition: all 0.3s ease;
-        }
-        
-        .section-divider {
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 2px;
-            margin: 0 auto 2rem;
-        }
-        
-        /* Responsive breakpoints */
-        @media (max-width: 640px) {
-            .hero-title {
-                font-size: 2.5rem;
-                line-height: 1.1;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.125rem;
-            }
-            
-            .card {
-                padding: 1.5rem;
-            }
-            
-            .skill-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-        }
-        
-        @media (min-width: 641px) and (max-width: 768px) {
-            .skill-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (min-width: 769px) {
-            .skill-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        
-        /* Animation keyframes */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--gray-100);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(var(--primary), var(--secondary));
-            border-radius: 4px;
-        }
-        
-        /* Focus states for accessibility */
-        .focus-ring:focus {
-            outline: 2px solid var(--primary);
-            outline-offset: 2px;
-        }
+        html { scroll-behavior: smooth; }
+        .glass-effect { backdrop-filter: blur(16px); background: rgba(255, 255, 255, 0.1); }
+        .nav-active { background: rgba(255, 255, 255, 0.2) !important; font-weight: 600; }
+        section { scroll-margin-top: 80px; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeInUp 0.6s ease forwards; }
+        .card { transition: all 0.3s ease; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
     </style>
 </head>
-<body class="">
+<body class="font-sans text-gray-900">
     <!-- Navigation -->
-    <nav class="fixed w-full top-0 z-50 gradient-bg ">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+    <nav id="navbar" class="fixed w-full top-0 z-50 bg-gradient-to-r from-primary to-secondary shadow-lg transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between items-center py-4">
-                <div class="text-white font-bold text-xl">Samiksha Sakarkar</div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="text-white hover:text-cyan-200 transition-colors focus-ring">Home</a>
-                    <a href="#about" class="text-white hover:text-cyan-200 transition-colors focus-ring">About</a>
-                    <a href="#skills" class="text-white hover:text-cyan-200 transition-colors focus-ring">Skills</a>
-                    <a href="#experience" class="text-white hover:text-cyan-200 transition-colors focus-ring">Experience</a>
-                    <a href="#education" class="text-white hover:text-cyan-200 transition-colors focus-ring">Education</a>
-                    <a href="#contact" class="text-white hover:text-cyan-200 transition-colors focus-ring">Contact</a>
+                <div class="text-white font-bold text-xl cursor-pointer" onclick="scrollToSection('home')">
+                    Samiksha Sakarkar
                 </div>
-                <button id="mobile-menu-btn" class="md:hidden text-white focus-ring p-2">
+                <div class="hidden md:flex space-x-1">
+                    <a href="#home" class="nav-link px-4 py-2 text-white rounded-full transition-all hover:bg-white/20" data-section="home">Home</a>
+                    <a href="#about" class="nav-link px-4 py-2 text-white rounded-full transition-all hover:bg-white/20" data-section="about">About</a>
+                    <a href="#skills" class="nav-link px-4 py-2 text-white rounded-full transition-all hover:bg-white/20" data-section="skills">Skills</a>
+                    <a href="#experience" class="nav-link px-4 py-2 text-white rounded-full transition-all hover:bg-white/20" data-section="experience">Experience</a>
+                    <a href="#education" class="nav-link px-4 py-2 text-white rounded-full transition-all hover:bg-white/20" data-section="education">Education</a>
+                    <a href="#contact" class="nav-link px-4 py-2 text-white rounded-full transition-all hover:bg-white/20" data-section="contact">Contact</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-white p-2 rounded-lg hover:bg-white/20">
                     <i class="fas fa-bars text-lg"></i>
                 </button>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden ">
-            <div class="px-4 pt-2 pb-3 space-y-1">
-                <a href="#home" class="block px-3 py-2 text-white hover:text-cyan-200 transition-colors">Home</a>
-                <a href="#about" class="block px-3 py-2 text-white hover:text-cyan-200 transition-colors">About</a>
-                <a href="#skills" class="block px-3 py-2 text-white hover:text-cyan-200 transition-colors">Skills</a>
-                <a href="#experience" class="block px-3 py-2 text-white hover:text-cyan-200 transition-colors">Experience</a>
-                <a href="#education" class="block px-3 py-2 text-white hover:text-cyan-200 transition-colors">Education</a>
-                <a href="#contact" class="block px-3 py-2 text-white hover:text-cyan-200 transition-colors">Contact</a>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-primary/95 backdrop-blur-md">
+            <div class="px-4 py-2 space-y-1">
+                <a href="#home" class="block nav-link px-4 py-3 text-white rounded-lg hover:bg-white/20" data-section="home">Home</a>
+                <a href="#about" class="block nav-link px-4 py-3 text-white rounded-lg hover:bg-white/20" data-section="about">About</a>
+                <a href="#skills" class="block nav-link px-4 py-3 text-white rounded-lg hover:bg-white/20" data-section="skills">Skills</a>
+                <a href="#experience" class="block nav-link px-4 py-3 text-white rounded-lg hover:bg-white/20" data-section="experience">Experience</a>
+                <a href="#education" class="block nav-link px-4 py-3 text-white rounded-lg hover:bg-white/20" data-section="education">Education</a>
+                <a href="#contact" class="block nav-link px-4 py-3 text-white rounded-lg hover:bg-white/20" data-section="contact">Contact</a>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="gradient-bg min-h-screen flex items-center relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+    <!-- Home Section -->
+    <section id="home" class="min-h-screen bg-gradient-to-br from-primary via-secondary to-cyan-500 flex items-center">
+        <div class="max-w-6xl mx-auto px-4 text-center text-white">
             <div class="fade-in">
-                <div class="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 mx-auto mb-8 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30 floating">
-                    <i class="fas fa-user text-3xl sm:text-4xl lg:text-6xl text-white"></i>
+                <div class="w-40 h-40 mx-auto mb-8 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30">
+                    <i class="fas fa-user text-5xl text-white"></i>
                 </div>
-                <h1 class="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-                    Samiksha Sakarkar
-                </h1>
-                <p class="hero-subtitle text-lg sm:text-xl md:text-2xl text-cyan-100 mb-6">
-                    Aspiring Java & SQL Developer | Passionate About Tech Innovation
+                <h1 class="text-5xl md:text-6xl font-bold mb-4">Samiksha Sakarkar</h1>
+                <p class="text-xl md:text-2xl text-cyan-100 mb-6">Aspiring Java & SQL Developer</p>
+                <p class="text-lg text-cyan-200 mb-8 max-w-3xl mx-auto">
+                    Passionate about creating scalable and maintainable applications with Java and Spring Boot
                 </p>
-                <p class="text-base sm:text-lg text-cyan-200 mb-8 max-w-3xl mx-auto px-4">
-                    Hello! I'm a budding Java developer focused on creating applications that are not only functional but also scalable and maintainable.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center px-4">
-                    <a href="#contact" class="btn-primary hover-scale">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#contact" class="px-8 py-3 bg-white text-primary rounded-full font-semibold hover:bg-gray-100 transition-all hover:scale-105">
                         Get In Touch
                     </a>
-                    <a href="#about" class="btn-secondary hover-scale">
+                    <a href="#about" class="px-8 py-3 border-2 border-white text-white rounded-full font-semibold hover:bg-white hover:text-primary transition-all">
                         Learn More
                     </a>
                 </div>
@@ -267,32 +88,32 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16 sm:py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 sm:mb-16 fade-in">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">About Me</h2>
-                <div class="section-divider"></div>
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">About Me</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded"></div>
             </div>
-            <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+            <div class="grid lg:grid-cols-2 gap-12">
                 <div class="fade-in">
-                    <div class="card bg-gradient-to-br from-blue-50 to-purple-50 hover-scale">
-                        <div class="skill-icon bg-blue-100 text-blue-600 mb-4">
-                            <i class="fas fa-code"></i>
+                    <div class="card bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl">
+                        <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-code text-blue-600 text-2xl"></i>
                         </div>
-                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">My Journey</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Through a solid educational foundation in Java and persistent practical application, I have equipped myself with the skills to build and enhance sophisticated web solutions using frameworks like Spring Boot coupled with MySQL databases.
+                        <h3 class="text-2xl font-bold text-center mb-4">My Journey</h3>
+                        <p class="text-gray-700 text-center leading-relaxed">
+                            Through solid educational foundation in Java and persistent practical application, I have equipped myself with skills to build sophisticated web solutions using Spring Boot and MySQL databases.
                         </p>
                     </div>
                 </div>
                 <div class="fade-in">
-                    <div class="card bg-gradient-to-br from-purple-50 to-pink-50 hover-scale">
-                        <div class="skill-icon bg-purple-100 text-purple-600 mb-4">
-                            <i class="fas fa-lightbulb"></i>
+                    <div class="card bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl">
+                        <div class="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-lightbulb text-purple-600 text-2xl"></i>
                         </div>
-                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">My Approach</h3>
-                        <p class="text-gray-700 leading-relaxed">
-                            Problem-solving is at the heart of my approach, fuelled by an unyielding drive to stay aligned with the latest industry developments. I am actively seeking opportunities that will allow me to grow, contribute, and make a substantial impact in the tech community.
+                        <h3 class="text-2xl font-bold text-center mb-4">My Approach</h3>
+                        <p class="text-gray-700 text-center leading-relaxed">
+                            Problem-solving is at the heart of my approach. I am actively seeking opportunities to grow, contribute, and make a substantial impact in the tech community.
                         </p>
                     </div>
                 </div>
@@ -301,95 +122,81 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-16 sm:py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 sm:mb-16 fade-in">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Technical Skills</h2>
-                <div class="section-divider"></div>
+    <section id="skills" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Technical Skills</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded"></div>
             </div>
-            <div class="skill-grid grid gap-6 sm:gap-8">
-                <div class="text-center fade-in">
-                    <div class="card hover-scale">
-                        <div class="skill-icon bg-red-100 text-red-600">
-                            <i class="fab fa-java"></i>
-                        </div>
-                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">Java Programming</h3>
-                        <p class="text-gray-600 text-sm sm:text-base">Core Java, OOP concepts, and advanced Java features</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card bg-white p-8 rounded-2xl text-center fade-in">
+                    <div class="w-16 h-16 bg-red-100 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                        <i class="fab fa-java text-red-600 text-2xl"></i>
                     </div>
+                    <h3 class="text-xl font-bold mb-2">Java Programming</h3>
+                    <p class="text-gray-600">Core Java, OOP concepts, advanced features</p>
                 </div>
-                <div class="text-center fade-in">
-                    <div class="card hover-scale">
-                        <div class="skill-icon bg-green-100 text-green-600">
-                            <i class="fas fa-leaf"></i>
-                        </div>
-                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">Spring Boot</h3>
-                        <p class="text-gray-600 text-sm sm:text-base">Building scalable web applications and RESTful APIs</p>
+                <div class="card bg-white p-8 rounded-2xl text-center fade-in">
+                    <div class="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-leaf text-green-600 text-2xl"></i>
                     </div>
+                    <h3 class="text-xl font-bold mb-2">Spring Boot</h3>
+                    <p class="text-gray-600">Building scalable web applications and RESTful APIs</p>
                 </div>
-                <div class="text-center fade-in">
-                    <div class="card hover-scale">
-                        <div class="skill-icon bg-blue-100 text-blue-600">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">MySQL & SQL</h3>
-                        <p class="text-gray-600 text-sm sm:text-base">Database design, queries, and optimization</p>
+                <div class="card bg-white p-8 rounded-2xl text-center fade-in">
+                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-database text-blue-600 text-2xl"></i>
                     </div>
+                    <h3 class="text-xl font-bold mb-2">MySQL & SQL</h3>
+                    <p class="text-gray-600">Database design, queries, optimization</p>
                 </div>
-                <div class="text-center fade-in">
-                    <div class="card hover-scale">
-                        <div class="skill-icon bg-orange-100 text-orange-600">
-                            <i class="fas fa-cogs"></i>
-                        </div>
-                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">Hibernate</h3>
-                        <p class="text-gray-600 text-sm sm:text-base">ORM framework for database operations</p>
+                <div class="card bg-white p-8 rounded-2xl text-center fade-in">
+                    <div class="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-cogs text-orange-600 text-2xl"></i>
                     </div>
+                    <h3 class="text-xl font-bold mb-2">Hibernate</h3>
+                    <p class="text-gray-600">ORM framework for database operations</p>
                 </div>
-                <div class="text-center fade-in">
-                    <div class="card hover-scale">
-                        <div class="skill-icon bg-purple-100 text-purple-600">
-                            <i class="fas fa-tasks"></i>
-                        </div>
-                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">Management</h3>
-                        <p class="text-gray-600 text-sm sm:text-base">Project management and team coordination</p>
+                <div class="card bg-white p-8 rounded-2xl text-center fade-in">
+                    <div class="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-tasks text-purple-600 text-2xl"></i>
                     </div>
+                    <h3 class="text-xl font-bold mb-2">Management</h3>
+                    <p class="text-gray-600">Project management and team coordination</p>
                 </div>
-                <div class="text-center fade-in">
-                    <div class="card hover-scale">
-                        <div class="skill-icon bg-cyan-100 text-cyan-600">
-                            <i class="fas fa-layer-group"></i>
-                        </div>
-                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">Full Stack</h3>
-                        <p class="text-gray-600 text-sm sm:text-base">Front-end and back-end development</p>
+                <div class="card bg-white p-8 rounded-2xl text-center fade-in">
+                    <div class="w-16 h-16 bg-cyan-100 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-layer-group text-cyan-600 text-2xl"></i>
                     </div>
+                    <h3 class="text-xl font-bold mb-2">Full Stack</h3>
+                    <p class="text-gray-600">Front-end and back-end development</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-16 sm:py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 sm:mb-16 fade-in">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Experience</h2>
-                <div class="section-divider"></div>
+    <section id="experience" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Experience</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded"></div>
             </div>
             <div class="max-w-4xl mx-auto">
-                <div class="card bg-gradient-to-r from-blue-50 to-purple-50 fade-in hover-scale">
+                <div class="card bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-2xl fade-in">
                     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
                         <div>
-                            <h3 class="text-xl sm:text-2xl font-bold text-gray-900">Trainee Java Developer</h3>
-                            <p class="text-base sm:text-lg font-semibold text-blue-600">SohamGlobal</p>
+                            <h3 class="text-2xl font-bold text-gray-900">Trainee Java Developer</h3>
+                            <p class="text-lg font-semibold text-primary">SohamGlobal</p>
                         </div>
-                        <div class="text-gray-600 mt-2 lg:mt-0 text-sm sm:text-base">
-                            <i class="fas fa-calendar-alt mr-2"></i>
-                            January 2024 - June 2024 (6 months)
+                        <div class="text-gray-600 mt-2 lg:mt-0">
+                            <i class="fas fa-calendar-alt mr-2"></i>January 2024 - June 2024 (6 months)
                         </div>
                     </div>
-                    <p class="text-gray-700 mb-2 text-sm sm:text-base">
-                        <i class="fas fa-map-marker-alt mr-2 text-gray-500"></i>
-                        Amravati, Maharashtra, India
+                    <p class="text-gray-700 mb-2">
+                        <i class="fas fa-map-marker-alt mr-2 text-gray-500"></i>Amravati, Maharashtra, India
                     </p>
-                    <p class="text-gray-700 leading-relaxed text-sm sm:text-base">
+                    <p class="text-gray-700 leading-relaxed">
                         Gained hands-on experience in Java development, working on real-world projects and enhancing technical skills in enterprise-level application development.
                     </p>
                 </div>
@@ -398,47 +205,114 @@
     </section>
 
     <!-- Education Section -->
-    <section id="education" class="py-16 sm:py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 sm:mb-16 fade-in">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Education & Certifications</h2>
-                <div class="section-divider"></div>
+    <section id="education" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Education & Certifications</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded"></div>
             </div>
-            <div class="grid lg:grid-cols-2 gap-8">
-                <!-- Education -->
-                <div class="space-y-6">
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-6 fade-in">Education</h3>
-                    <div class="card fade-in hover-scale">
-                        <h4 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">Master of Computer Applications (MCA)</h4>
-                        <p class="text-blue-600 font-semibold mb-2 text-sm sm:text-base">Computer Programming, Specific Applications</p>
-                        <p class="text-gray-700 mb-2 text-sm sm:text-base">Shree Hanuman Vyayam Prasarak Mandal's P.G. Department of Computer Science & Technology</p>
-                        <p class="text-gray-600 text-xs sm:text-sm">December 2022 - June 2024</p>
-                        <p class="text-gray-600 text-xs sm:text-sm">Amravati, Maharashtra, India</p>
+            
+            <!-- Education Cards -->
+            <div class="mb-16">
+                <div class="flex items-center justify-center mb-8 fade-in">
+                    <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mr-4">
+                        <i class="fas fa-graduation-cap text-white text-xl"></i>
                     </div>
-                    <div class="card fade-in hover-scale">
-                        <h4 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">Full Stack Java</h4>
-                        <p class="text-blue-600 font-semibold mb-2 text-sm sm:text-base">Naresh iTechnology</p>
-                        <p class="text-gray-600 text-xs sm:text-sm">February 2024 - September 2024</p>
-                    </div>
+                    <h3 class="text-3xl font-bold text-gray-900">Education</h3>
                 </div>
                 
-                <!-- Certifications -->
-                <div class="space-y-6">
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-6 fade-in">Certifications</h3>
-                    <div class="space-y-4">
-                        <div class="card fade-in hover-scale">
-                            <div class="flex items-center mb-2">
-                                <i class="fas fa-certificate text-yellow-500 mr-3 text-lg sm:text-xl"></i>
-                                <h4 class="text-base sm:text-lg font-bold text-gray-900">Certification of Completion</h4>
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <!-- MCA Card -->
+                    <div class="card bg-gradient-to-br from-blue-50 via-white to-purple-50 p-8 rounded-3xl border-l-4 border-primary fade-in">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center">
+                                <i class="fas fa-university text-white text-2xl"></i>
                             </div>
-                            <p class="text-gray-700 text-sm sm:text-base">Enterprise Java Development</p>
+                            <span class="bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold">Master's</span>
                         </div>
-                        <div class="card fade-in hover-scale">
-                            <div class="flex items-center mb-2">
-                                <i class="fas fa-certificate text-yellow-500 mr-3 text-lg sm:text-xl"></i>
-                                <h4 class="text-base sm:text-lg font-bold text-gray-900">Java Training Crash Course</h4>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-3">Master of Computer Applications</h4>
+                        <p class="text-primary font-bold text-lg mb-3">Computer Programming & Applications</p>
+                        <div class="space-y-2 mb-4">
+                            <p class="text-gray-700 font-medium">Shree Hanuman Vyayam Prasarak Mandal's</p>
+                            <p class="text-gray-700">P.G. Department of Computer Science & Technology</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+                            <span class="text-gray-600 text-sm flex items-center">
+                                <i class="fas fa-calendar mr-2"></i>Dec 2022 - June 2024
+                            </span>
+                            <span class="text-gray-600 text-sm flex items-center">
+                                <i class="fas fa-map-marker-alt mr-2"></i>Amravati, Maharashtra
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Full Stack Course Card -->
+                    <div class="card bg-gradient-to-br from-green-50 via-white to-cyan-50 p-8 rounded-3xl border-l-4 border-secondary fade-in">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-cyan-500 rounded-2xl flex items-center justify-center">
+                                <i class="fas fa-code text-white text-2xl"></i>
                             </div>
-                            <p class="text-gray-700 text-sm sm:text-base">Java Beginners Course</p>
+                            <span class="bg-secondary text-white px-3 py-1 rounded-full text-sm font-semibold">Course</span>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-3">Full Stack Java Development</h4>
+                        <p class="text-secondary font-bold text-lg mb-3">Advanced Java Programming</p>
+                        <div class="space-y-2 mb-4">
+                            <p class="text-gray-700 font-medium">Naresh iTechnology</p>
+                            <p class="text-gray-700">Comprehensive Full Stack Training</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+                            <span class="text-gray-600 text-sm flex items-center">
+                                <i class="fas fa-calendar mr-2"></i>Feb 2024 - Sep 2024
+                            </span>
+                            <span class="text-gray-600 text-sm flex items-center">
+                                <i class="fas fa-clock mr-2"></i>8 Months
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Certifications Section -->
+            <div>
+                <div class="flex items-center justify-center mb-8 fade-in">
+                    <div class="w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center mr-4">
+                        <i class="fas fa-award text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-900">Certifications</h3>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    <!-- Enterprise Java Certification -->
+                    <div class="card bg-gradient-to-r from-yellow-50 to-orange-50 p-6 rounded-2xl border-2 border-yellow-200 fade-in">
+                        <div class="flex items-center mb-4">
+                            <div class="w-14 h-14 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-certificate text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-900">Enterprise Java Development</h4>
+                                <p class="text-orange-600 font-semibold text-sm">Certification of Completion</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-3 border-t border-orange-200">
+                            <span class="text-gray-600 text-sm">Advanced Level</span>
+                            <span class="bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold">CERTIFIED</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Java Crash Course Certification -->
+                    <div class="card bg-gradient-to-r from-green-50 to-teal-50 p-6 rounded-2xl border-2 border-green-200 fade-in">
+                        <div class="flex items-center mb-4">
+                            <div class="w-14 h-14 bg-gradient-to-r from-green-400 to-teal-400 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-medal text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-900">Java Training Crash Course</h4>
+                                <p class="text-teal-600 font-semibold text-sm">Java Beginners Course</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-3 border-t border-teal-200">
+                            <span class="text-gray-600 text-sm">Foundation Level</span>
+                            <span class="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold">COMPLETED</span>
                         </div>
                     </div>
                 </div>
@@ -447,56 +321,53 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 sm:py-20 gradient-bg relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-12 sm:mb-16 fade-in">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Get In Touch</h2>
-                <div class="w-20 h-1 bg-white mx-auto mb-4 rounded"></div>
-                <p class="text-cyan-100 max-w-2xl mx-auto text-sm sm:text-base">
-                    Interested in discussing Java, tech innovations, or potential projects? Let's make a connection!
+    <section id="contact" class="py-20 bg-gradient-to-br from-primary via-secondary to-cyan-500">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-white mb-4">Get In Touch</h2>
+                <div class="w-20 h-1 bg-white mx-auto rounded mb-4"></div>
+                <p class="text-cyan-100 max-w-2xl mx-auto">
+                    Interested in discussing Java, tech innovations, or potential projects? Let's connect!
                 </p>
             </div>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto">
-                <div class="text-center fade-in hover-scale">
-                    <div class="glass-effect p-6 sm:p-8 rounded-2xl">
-                        <div class="skill-icon bg-white/20 text-white mb-4 mx-auto">
-                            <i class="fas fa-map-marker-alt"></i>
+            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
+                <div class="text-center fade-in">
+                    <div class="glass-effect p-8 rounded-2xl border border-white/20">
+                        <div class="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-map-marker-alt text-white text-2xl"></i>
                         </div>
-                        <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Location</h3>
-                        <p class="text-cyan-100 text-sm sm:text-base">Hyderabad, Telangana, India</p>
+                        <h3 class="text-xl font-bold text-white mb-2">Location</h3>
+                        <p class="text-cyan-100">Hyderabad, Telangana, India</p>
                     </div>
                 </div>
-                <div class="text-center fade-in hover-scale">
-                    <div class="glass-effect p-6 sm:p-8 rounded-2xl">
-                        <div class="skill-icon bg-white/20 text-white mb-4 mx-auto">
-                            <i class="fas fa-phone"></i>
+                <div class="text-center fade-in">
+                    <div class="glass-effect p-8 rounded-2xl border border-white/20">
+                        <div class="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-phone text-white text-2xl"></i>
                         </div>
-                        <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Phone</h3>
-                        <a href="tel:7350117577" class="text-cyan-100 hover:text-white transition-colors text-sm sm:text-base">7350117577</a>
+                        <h3 class="text-xl font-bold text-white mb-2">Phone</h3>
+                        <a href="tel:7350117577" class="text-cyan-100 hover:text-white transition-colors">7350117577</a>
                     </div>
                 </div>
-                <div class="text-center fade-in hover-scale sm:col-span-2 lg:col-span-1">
-                    <div class="glass-effect p-6 sm:p-8 rounded-2xl">
-                        <div class="skill-icon bg-white/20 text-white mb-4 mx-auto">
-                            <i class="fas fa-envelope"></i>
+                <div class="text-center fade-in">
+                    <div class="glass-effect p-8 rounded-2xl border border-white/20">
+                        <div class="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-envelope text-white text-2xl"></i>
                         </div>
-                        <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Email</h3>
-                        <a href="mailto:sakarkarsamiksha71@gmail.com" class="text-cyan-100 hover:text-white transition-colors text-xs sm:text-sm break-all">sakarkarsamiksha71@gmail.com</a>
+                        <h3 class="text-xl font-bold text-white mb-2">Email</h3>
+                        <a href="mailto:sakarkarsamiksha71@gmail.com" class="text-cyan-100 hover:text-white transition-colors text-sm">sakarkarsamiksha71@gmail.com</a>
                     </div>
                 </div>
             </div>
-            <div class="text-center mt-12 fade-in">
+            <div class="text-center fade-in">
                 <div class="flex justify-center space-x-6">
-                    <a href="https://www.linkedin.com/in/samikshasakarkar" target="_blank" 
-                       class="w-12 h-12 glass-effect rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 hover:scale-110">
+                    <a href="https://www.linkedin.com/in/samikshasakarkar" target="_blank" class="w-12 h-12 glass-effect border border-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-all hover:scale-110">
                         <i class="fab fa-linkedin-in text-white text-xl"></i>
                     </a>
-                    <a href="mailto:sakarkarsamiksha71@gmail.com" 
-                       class="w-12 h-12 glass-effect rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 hover:scale-110">
+                    <a href="mailto:sakarkarsamiksha71@gmail.com" class="w-12 h-12 glass-effect border border-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-all hover:scale-110">
                         <i class="fas fa-envelope text-white text-xl"></i>
                     </a>
-                    <a href="tel:7350117577" 
-                       class="w-12 h-12 glass-effect rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 hover:scale-110">
+                    <a href="tel:7350117577" class="w-12 h-12 glass-effect border border-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-all hover:scale-110">
                         <i class="fas fa-phone text-white text-xl"></i>
                     </a>
                 </div>
@@ -506,248 +377,113 @@
 
     <!-- Footer -->
     <footer class="bg-slate-900 py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-gray-400 text-sm sm:text-base">© 2024 Samiksha Sakarkar. All rights reserved.</p>
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-gray-400">© 2024 Samiksha Sakarkar. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Scroll to Top -->
+    <button id="scroll-top" class="fixed bottom-6 right-6 w-12 h-12 bg-primary text-white rounded-full shadow-lg opacity-0 transition-all hover:bg-primary/90 hover:scale-110 z-50">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
     <script>
-        // Mobile menu toggle
+        // Navigation System
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        const scrollTopBtn = document.getElementById('scroll-top');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section[id]');
+
+        // Smooth scroll function
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                const offsetTop = section.getBoundingClientRect().top + window.pageYOffset - 80;
+                window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                mobileMenu.classList.add('hidden');
+            }
+        }
+
+        // Update active nav link
+        function updateActiveNav() {
+            const scrollPos = window.scrollY + 100;
+            
+            sections.forEach(section => {
+                const top = section.getBoundingClientRect().top + window.pageYOffset;
+                const bottom = top + section.offsetHeight;
+                const id = section.getAttribute('id');
+                
+                if (scrollPos >= top && scrollPos <= bottom) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('nav-active');
+                        if (link.getAttribute('data-section') === id) {
+                            link.classList.add('nav-active');
+                        }
+                    });
+                }
+            });
+        }
+
+        // Event listeners
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionId = link.getAttribute('data-section');
+                scrollToSection(sectionId);
+            });
+        });
 
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offsetTop = target.getBoundingClientRect().top + window.pageYOffset - 80;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-                // Close mobile menu if open
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
                 mobileMenu.classList.add('hidden');
-            });
+            }
         });
 
-        // Enhanced fade in animation on scroll with stagger effect
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Scroll events
+        window.addEventListener('scroll', () => {
+            updateActiveNav();
+            
+            // Scroll to top button
+            if (window.scrollY > 300) {
+                scrollTopBtn.style.opacity = '1';
+                scrollTopBtn.style.transform = 'translateY(0)';
+            } else {
+                scrollTopBtn.style.opacity = '0';
+                scrollTopBtn.style.transform = 'translateY(20px)';
+            }
+        });
 
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
+            entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                    }, index * 100);
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
         }, observerOptions);
 
-        // Observe all fade-in elements
         document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
             observer.observe(el);
         });
 
-        // Add active nav link highlighting
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const sections = document.querySelectorAll('section[id]');
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                const sectionHeight = section.clientHeight;
-                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            document.querySelectorAll('nav a[href^="#"]').forEach(link => {
-                link.classList.remove('text-yellow-300');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('text-yellow-300');
-                }
-            });
-        });
-
-        // Enhanced typing effect for the hero title
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.innerHTML = '';
-            element.style.borderRight = '3px solid white';
-            
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                } else {
-                    // Remove cursor after typing is complete
-                    setTimeout(() => {
-                        element.style.borderRight = 'none';
-                    }, 1000);
-                }
-            }
-            type();
-        }
-
-        // Initialize typing effect when page loads
-        window.addEventListener('load', () => {
-            const title = document.querySelector('.hero-title');
-            if (title) {
-                const originalText = title.textContent;
-                setTimeout(() => {
-                    typeWriter(title, originalText, 80);
-                }, 800);
-            }
-        });
-
-        // Enhanced parallax effect with performance optimization
-        let ticking = false;
-        
-        function updateParallax() {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('#home');
-            const rate = scrolled * -0.3;
-            
-            if (parallax) {
-                parallax.style.transform = `translateY(${rate}px)`;
-            }
-            
-            ticking = false;
-        }
-
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(updateParallax);
-                ticking = true;
-            }
-        });
-
-        // Add scroll-to-top functionality
-        const scrollToTopBtn = document.createElement('button');
-        scrollToTopBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
-        scrollToTopBtn.className = 'fixed bottom-8 right-8 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 z-50 opacity-0 pointer-events-none';
-        scrollToTopBtn.style.transform = 'translateY(100px)';
-        document.body.appendChild(scrollToTopBtn);
-
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Show/hide scroll to top button
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollToTopBtn.style.opacity = '1';
-                scrollToTopBtn.style.pointerEvents = 'auto';
-                scrollToTopBtn.style.transform = 'translateY(0)';
-            } else {
-                scrollToTopBtn.style.opacity = '0';
-                scrollToTopBtn.style.pointerEvents = 'none';
-                scrollToTopBtn.style.transform = 'translateY(100px)';
-            }
-        });
-
-        // Add loading animation
-        window.addEventListener('load', () => {
-            document.body.classList.add('loaded');
-        });
-
-        // Enhanced mobile menu with better UX
-        document.addEventListener('click', (e) => {
-            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                mobileMenu.classList.add('hidden');
-            }
-        });
-
-        // Add escape key to close mobile menu
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                mobileMenu.classList.add('hidden');
-            }
-        });
-
-        // Performance optimization: Reduce animations on low-end devices
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-        
-        if (prefersReducedMotion.matches) {
-            document.querySelectorAll('.hover-scale, .floating').forEach(el => {
-                el.style.transition = 'none';
-                el.style.animation = 'none';
-            });
-        }
-
-        // Add intersection observer for skill icons animation
-        const skillsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const icon = entry.target.querySelector('.skill-icon');
-                    if (icon) {
-                        icon.style.transform = 'scale(1.1)';
-                        setTimeout(() => {
-                            icon.style.transform = 'scale(1)';
-                        }, 300);
-                    }
-                }
-            });
-        }, { threshold: 0.5 });
-
-        document.querySelectorAll('.skill-grid .card').forEach(card => {
-            skillsObserver.observe(card);
-        });
-
-        // Add form validation if contact form is added later
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
-
-        // Add smooth reveal for cards on hover
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Add dynamic greeting based on time of day
-        function updateGreeting() {
-            const now = new Date();
-            const hour = now.getHours();
-            const subtitle = document.querySelector('.hero-subtitle');
-            
-            if (subtitle) {
-                let greeting = '';
-                if (hour < 12) greeting = '🌅 Good Morning! ';
-                else if (hour < 17) greeting = '☀️ Good Afternoon! ';
-                else greeting = '🌙 Good Evening! ';
-                
-                const originalText = subtitle.textContent;
-                if (!originalText.includes('Good')) {
-                    subtitle.textContent = greeting + originalText;
-                }
-            }
-        }
-
-        // Call greeting update on load
-        setTimeout(updateGreeting, 2000);
-
-        console.log('🚀 Portfolio loaded successfully! Built with modern web technologies.');
+        // Initialize
+        updateActiveNav();
+        console.log('Portfolio loaded successfully!');
     </script>
 </body>
 </html>
